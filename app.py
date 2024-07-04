@@ -204,16 +204,37 @@ def add_rental(form: RentalSchema):
 
     It returns the newly created rental with its ID.
     """
+    logger.debug(f"Adding rental for user ID: '{form.user_id}' and car ID: '{form.car_id}'")
+
+    session = Session()
+
+    # Retrieve the car to get the price per day
+    car = session.query(Car).filter(Car.id == form.car_id).first()
+    if not car:
+        error_msg = "Car not found"
+        logger.warning(f"Error adding rental: {error_msg}")
+        return {"message": error_msg}, 400
+
+    # Calculate the total price based on the rental period and car's price per day
+    price_per_day = car.price_per_day
+    rental_days = (form.rental_end_date - form.rental_start_date).days
+    if rental_days < 0:
+        error_msg = "Invalid rental period: End date is before start date"
+        logger.warning(f"Error adding rental: {error_msg}")
+        return {"message": error_msg}, 400
+    
+    total_price = price_per_day * rental_days
+
+    # Create a new rental instance
     rental = Rental(
         user_id=form.user_id,
         car_id=form.car_id,
         rental_start_date=form.rental_start_date,
         rental_end_date=form.rental_end_date,
-        total_price=form.total_price
+        total_price=total_price
     )
-    logger.debug(f"Adding rental: '{rental.id}'")
+
     try:
-        session = Session()
         session.add(rental)
         session.commit()
         logger.debug(f"Rental added: '{rental.id}'")

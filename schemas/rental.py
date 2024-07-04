@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 from datetime import date
+
 from model.rental import Rental
 
 class RentalSchema(BaseModel):
@@ -12,13 +13,11 @@ class RentalSchema(BaseModel):
         car_id (int): The ID of the car being rented.
         rental_start_date (date): The start date of the rental period.
         rental_end_date (date): The end date of the rental period.
-        total_price (float): The total price of the rental.
     """
     user_id: int
     car_id: int
     rental_start_date: date
     rental_end_date: date
-    total_price: float
 
 class RentalSearchSchema(BaseModel):
     """
@@ -33,12 +32,9 @@ class RentalViewSchema(RentalSchema):
 
     Attributes:
         id (int): The unique identifier of the rental.
+        total_price (float): The total price of the rental.
     """
     id: int = 1
-    user_id: int = 1
-    car_id: int = 1
-    rental_start_date: date = date.today()
-    rental_end_date: date = date.today()
     total_price: float = 0.0
 
 class RentalListSchema(BaseModel):
@@ -49,28 +45,6 @@ class RentalListSchema(BaseModel):
         rentals (List[RentalViewSchema]): A list of rental details.
     """
     rentals: List[RentalViewSchema]
-
-def present_rentals(rentals: List[Rental]):
-    """
-    Returns a representation of the rentals following the schema defined in RentalViewSchema.
-
-    Args:
-        rentals (List[Rental]): A list of rental objects.
-
-    Returns:
-        dict: A dictionary with a list of rental details.
-    """
-    result = []
-    for rental in rentals:
-        result.append({
-            "id": rental.id,
-            "user_id": rental.user_id,
-            "car_id": rental.car_id,
-            "rental_start_date": rental.rental_start_date,
-            "rental_end_date": rental.rental_end_date,
-            "total_price": rental.total_price
-        })
-    return {"rentals": result}
 
 class RentalDeleteSchema(BaseModel):
     """
@@ -101,3 +75,25 @@ def present_rental(rental: Rental):
         "rental_end_date": rental.rental_end_date,
         "total_price": rental.total_price
     }
+
+def present_rentals(rentals: List[Rental]):
+    """
+    Returns a representation of the rentals following the schema defined in RentalViewSchema.
+
+    Args:
+        rentals (List[Rental]): A list of rental objects.
+
+    Returns:
+        dict: A dictionary with a list of rental details.
+    """
+    result = []
+    for rental in rentals:
+        result.append({
+            "id": rental.id,
+            "user_id": rental.user_id,
+            "car_id": rental.car_id,
+            "rental_start_date": rental.rental_start_date,
+            "rental_end_date": rental.rental_end_date,
+            "total_price": rental.total_price
+        })
+    return {"rentals": result}

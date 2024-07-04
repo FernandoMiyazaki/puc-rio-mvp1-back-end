@@ -29,17 +29,6 @@ class Rental(Base):
         total_price: float, 
         date_added: Optional[datetime] = None
     ):
-        """
-        Initialize a Rental instance.
-
-        Args:
-            user_id (int): The ID of the user who is renting the car.
-            car_id (int): The ID of the car being rented.
-            rental_start_date (date): The start date of the rental period.
-            rental_end_date (date): The end date of the rental period.
-            total_price (float): The total price of the rental.
-            date_added (Optional[datetime]): The date and time when the rental was added to the database.
-        """
         self.user_id = user_id
         self.car_id = car_id
         self.rental_start_date = rental_start_date
