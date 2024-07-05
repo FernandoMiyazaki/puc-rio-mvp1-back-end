@@ -3,6 +3,7 @@
 This project is a Minimum Viable Product (MVP) and part of the "Desenvolvimento Full Stack Básico" course, which is part of the Software Engineering Postgraduate Program at Pontifical Catholic University of Rio de Janeiro (PUC-Rio). It is an API developed in Python using Flask, along with the creation of a database with the **car**, **user**, and **rental** tables. The API supports GET, POST, and DELETE routes.
 
 ## Entity Relationship Diagram
+
 ![ER Diagram](er_diagram_car_rental.jpg)
 
 ---
