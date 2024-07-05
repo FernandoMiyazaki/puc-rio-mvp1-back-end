@@ -1,25 +1,25 @@
 # Car Rental System API
 
-Este projeto é um Minimum Viable Product (MVP) e parte integrante da disciplina "Desenvolvimento Full Stack Básico", do curso de Pós-Graduação em Engenharia de Software da Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio). Trata-se de uma API desenvolvida em Python e com Flask, junto com a criação de um banco de dados com as tabelas **car**, **user** e **rental**. A API possui as rotas GET, POST e DELETE.
+This project is a Minimum Viable Product (MVP) and part of the "Desenvolvimento Full Stack Básico" course, which is part of the Software Engineering Postgraduate Program at Pontifical Catholic University of Rio de Janeiro (PUC-Rio). It is an API developed in Python using Flask, along with the creation of a database with the **car**, **user**, and **rental** tables. The API supports GET, POST, and DELETE routes.
 
 ---
-## Instalação
+## Installation
 
-### 1. Clonar o repositório:
+### 1. Clone the repository:
 
 ```
 git clone https://github.com/FernandoMiyazaki/puc-rio-mvp1-back-end.git
 ```
 
-### 2. Abrir o repositório:
+### 2. Open the repository:
 
 ```
 cd puc-rio-mvp1-back-end
 ```
 
-### 3. Criar e ativar um ambiente virtual
+### 3. Create and activate a virtual environment
 
-Windows
+**Windows**
 
 ```
 python -m venv venv
@@ -28,7 +28,7 @@ python -m venv venv
 .\venv\Scripts\activate
 ```
 
-Mac/Linux
+**Mac/Linux**
 
 ```
 python3 -m venv venv
@@ -37,18 +37,18 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 4. Fazer a instalação das bibliotecas Python listadas no `requirements.txt`.
+### 4. Install the Python libraries listed in `requirements.txt`.
 
 ```
 pip install -r requirements.txt
 ```
 
-### 5. Executar a API:
+### 5. Run the API:
 
 ```
 flask run --host 0.0.0.0 --port 5000
 ```
 
-### 6. Acessar a documentação da aplicação:
+### 6. Access the application documentation:
 
-Abra o [http://127.0.0.1:5000] no navegador.
+Open [http://127.0.0.1:5000] in your browser.
