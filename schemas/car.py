@@ -40,6 +40,7 @@ def present_cars(cars: List[Car]):
     result = []
     for car in cars:
         result.append({
+            "id": car.id,
             "make": car.make,
             "model": car.model,
             "year": car.year,

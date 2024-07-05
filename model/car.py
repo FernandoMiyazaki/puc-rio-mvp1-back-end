@@ -5,7 +5,6 @@ from sqlalchemy import Column, Integer, String, Boolean, DateTime, Numeric
 from sqlalchemy.orm import relationship
 
 from model import Base
-# from model.rental import Rental
 
 class Car(Base):
     __tablename__ = 'car'

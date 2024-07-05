@@ -208,14 +208,12 @@ def add_rental(form: RentalSchema):
 
     session = Session()
 
-    # Retrieve the car to get the price per day
     car = session.query(Car).filter(Car.id == form.car_id).first()
     if not car:
         error_msg = "Car not found"
         logger.warning(f"Error adding rental: {error_msg}")
         return {"message": error_msg}, 400
 
-    # Calculate the total price based on the rental period and car's price per day
     price_per_day = car.price_per_day
     rental_days = (form.rental_end_date - form.rental_start_date).days
     if rental_days < 0:
@@ -225,7 +223,6 @@ def add_rental(form: RentalSchema):
     
     total_price = price_per_day * rental_days
 
-    # Create a new rental instance
     rental = Rental(
         user_id=form.user_id,
         car_id=form.car_id,
